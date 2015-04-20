@@ -1,0 +1,8 @@
+{% load_yaml as rawmap %}
+Debian:
+  config:
+    manage:
+      - interfaces_file
+    interfaces_file:
+      path: /etc/network/interfaces
+{% endload %}

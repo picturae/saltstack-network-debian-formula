@@ -1,0 +1,15 @@
+{%- from "network-debian/defaults.yaml" import rawmap with context -%}
+{%- set datamap = salt['grains.filter_by'](rawmap, merge=salt['pillar.get']('network-debian:lookup')) -%}
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+{%- for i in salt['pillar.get']('network-debian:interfaces')|default([]) %}
+{% for a in i.settings|default([]) %}
+{{ a }}
+{%- endfor %}
+{% endfor %}
+
